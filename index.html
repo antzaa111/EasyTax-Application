@@ -67,28 +67,6 @@
         @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .modal-content { animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-        /* Calculator Styles */
-        #calculatorModal .modal-content {
-            background-color: #1e293b; /* Slate-800 */
-            color: white;
-        }
-        .calc-btn {
-            @apply bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl text-xl transition-colors active:scale-95;
-        }
-        .calc-btn.operator {
-            @apply bg-emerald-600 hover:bg-emerald-500;
-        }
-        .calc-btn.equals {
-            @apply bg-blue-600 hover:bg-blue-500 col-span-2;
-        }
-        .calc-btn.clear {
-            @apply bg-red-600 hover:bg-red-500;
-        }
-        #calcDisplay {
-            @apply w-full bg-slate-900 text-right text-4xl font-mono p-4 rounded-xl mb-4 outline-none;
-        }
-
-
         /* Print Specifics */
         @media print {
             body * { visibility: hidden; }
@@ -219,15 +197,7 @@
             
             <div class="grid lg:grid-cols-2 gap-12">
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-3xl font-bold text-emerald-400">ทดสอบการคำนวณ (Live Demo)</h2>
-                        <button onclick="showCalculator()" class="flex items-center gap-1 text-sm text-slate-300 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 hover:border-emerald-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                            </svg>
-                            เครื่องคิดเลข
-                        </button>
-                    </div>
+                    <h2 class="text-3xl font-bold mb-4 text-emerald-400">ทดสอบการคำนวณ (Live Demo)</h2>
                     <p class="text-slate-300 mb-8 text-sm">ทดลองกรอกข้อมูลเพื่อดูการทำงานของ Logic โปรแกรม</p>
                     
                     <div class="space-y-6 text-slate-900">
@@ -340,46 +310,7 @@
         <p class="mt-2 text-xs">จัดทำโดย นางสาวประณยา เสพรัมย์ เลขประจำตัว 67233336 ระดับชั้น ปวส.2/1 B</p>
     </footer>
 
-    <div id="calculatorModal" class="modal">
-        <div class="modal-content rounded-3xl shadow-2xl p-6 w-full max-w-sm mx-4 relative">
-            <button onclick="closeCalculator()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                เครื่องคิดเลข
-            </h3>
-            <input type="text" id="calcDisplay" readonly value="0">
-            <div class="grid grid-cols-4 gap-3">
-                <button class="calc-btn clear col-span-2" onclick="calcClear()">C</button>
-                <button class="calc-btn operator" onclick="calcSetOperator('/')">÷</button>
-                <button class="calc-btn operator" onclick="calcSetOperator('*')">×</button>
-                <button class="calc-btn" onclick="calcAppend('7')">7</button>
-                <button class="calc-btn" onclick="calcAppend('8')">8</button>
-                <button class="calc-btn" onclick="calcAppend('9')">9</button>
-                <button class="calc-btn operator" onclick="calcSetOperator('-')">-</button>
-                <button class="calc-btn" onclick="calcAppend('4')">4</button>
-                <button class="calc-btn" onclick="calcAppend('5')">5</button>
-                <button class="calc-btn" onclick="calcAppend('6')">6</button>
-                <button class="calc-btn operator" onclick="calcSetOperator('+')">+</button>
-                <button class="calc-btn" onclick="calcAppend('1')">1</button>
-                <button class="calc-btn" onclick="calcAppend('2')">2</button>
-                <button class="calc-btn" onclick="calcAppend('3')">3</button>
-                <button class="calc-btn row-span-2" onclick="calcCalculate()">=</button>
-                <button class="calc-btn col-span-2" onclick="calcAppend('0')">0</button>
-                <button class="calc-btn" onclick="calcAppend('.')">.</button>
-            </div>
-            <button onclick="copyToSalary()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-colors flex justify-center items-center gap-2">
-                <span>นำไปใช้กับช่องเงินเดือน</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                </svg>
-            </button>
-        </div>
-    </div>
-
+    <!-- Result Modal (Calculation) -->
     <div id="resultModal" class="modal">
         <div class="modal-content bg-white rounded-2xl shadow-2xl p-8 max-w-lg w-full mx-4 relative text-center">
             <button onclick="closeResultModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 no-print">
@@ -433,6 +364,7 @@
         </div>
     </div>
 
+    <!-- Info Modal -->
     <div id="infoModal" class="modal">
         <div class="modal-content bg-white rounded-2xl shadow-2xl p-0 max-w-lg w-full mx-4 relative overflow-hidden text-left">
             <div id="infoModalHeader" class="bg-blue-600 p-6 text-white relative">
@@ -504,80 +436,6 @@
             osc.stop(ctx.currentTime + 0.2);
         }
 
-        // --- CALCULATOR LOGIC (FIXED) ---
-        let calcCurrentValue = '0';
-        let calcOperator = null;
-        let calcPreviousValue = null;
-        const calcDisplayElement = document.getElementById('calcDisplay');
-
-        function showCalculator() {
-            playPopSound();
-            document.getElementById('calculatorModal').classList.add('show');
-        }
-
-        function closeCalculator() {
-            document.getElementById('calculatorModal').classList.remove('show');
-            calcClear();
-        }
-
-        function calcUpdateDisplay() {
-            calcDisplayElement.value = Number(calcCurrentValue).toLocaleString();
-        }
-
-        function calcAppend(num) {
-            if (calcCurrentValue === '0' && num !== '.') {
-                calcCurrentValue = num;
-            } else {
-                if (num === '.' && calcCurrentValue.includes('.')) return;
-                calcCurrentValue += num;
-            }
-            calcUpdateDisplay();
-        }
-        
-        // NEW function to handle operators specifically
-        function calcSetOperator(op) {
-            if (calcOperator !== null) calcCalculate();
-            calcPreviousValue = calcCurrentValue;
-            calcCurrentValue = '0';
-            calcOperator = op;
-        }
-
-        function calcClear() {
-            calcCurrentValue = '0';
-            calcOperator = null;
-            calcPreviousValue = null;
-            calcUpdateDisplay();
-        }
-
-        function calcCalculate() {
-            if (calcOperator === null || calcPreviousValue === null) return;
-            const prev = parseFloat(calcPreviousValue);
-            const current = parseFloat(calcCurrentValue);
-            let result;
-
-            switch (calcOperator) {
-                case '+': result = prev + current; break;
-                case '-': result = prev - current; break;
-                case '*': result = prev * current; break;
-                case '/': result = prev / current; break;
-            }
-            
-            calcCurrentValue = result.toString();
-            calcOperator = null;
-            calcPreviousValue = null;
-            calcUpdateDisplay();
-        }
-
-        // Copy result to salary input
-        function copyToSalary() {
-            const result = parseFloat(calcCurrentValue.replace(/,/g, '')); // Remove commas before parsing
-            if (!isNaN(result)) {
-                document.getElementById('inputSalary').value = result;
-                updateSimulation(); // Update main calculation
-                closeCalculator();
-            }
-        }
-
         // --- CHARTS ---
         const ctxProblem = document.getElementById('problemChart').getContext('2d');
         new Chart(ctxProblem, {
@@ -607,9 +465,6 @@
             if (netIncome > 500000) tax += (Math.min(netIncome, 750000) - 500000) * 0.15;
             if (netIncome > 750000) tax += (Math.min(netIncome, 1000000) - 750000) * 0.20;
             if (netIncome > 1000000) tax += (Math.min(netIncome, 2000000) - 1000000) * 0.25;
-            // Add top bracket for completeness
-            if (netIncome > 2000000) tax += (Math.min(netIncome, 5000000) - 2000000) * 0.30;
-            if (netIncome > 5000000) tax += (netIncome - 5000000) * 0.35;
             return tax;
         }
 
@@ -638,11 +493,8 @@
             let pvd = parseFloat(document.getElementById('deductPVD').value) || 0;
             let oth = parseFloat(document.getElementById('deductOthers').value) || 0;
 
-            // Logic Caps (Real User Feature)
             if(sso > 9000) sso = 9000;
             if(ins > 100000) ins = 100000;
-            // Simple cap for PVD for demo (real rules are complex)
-            if(pvd > 500000) pvd = 500000; 
 
             const expenses = Math.min(income * 0.5, 100000);
             const standardPersonal = 60000;
@@ -651,13 +503,10 @@
             const tax = calculateTax(netIncome);
 
             document.getElementById('taxResultDisplay').innerText = tax.toLocaleString();
-            
-            // Avoid negative chart data
-            const incomeAfterTax = Math.max(0, income - tax);
-            liveChart.data.datasets[0].data = [incomeAfterTax, tax];
+            liveChart.data.datasets[0].data = [income - tax, tax];
             liveChart.update();
 
-            return { income, expenses, sso, ins, pvd, oth, standardPersonal, totalDeductions, netIncome, tax };
+            return { income, expenses, sso, ins, pvd, oth, totalDeductions, netIncome, tax };
         }
 
         // --- MODAL TRIGGERS ---
@@ -674,14 +523,11 @@
             const modalIcon = document.getElementById('modalIcon');
             const modalTitle = document.getElementById('modalTitle');
 
-            // Populate Breakdown Table (Expanded)
             document.getElementById('bdIncome').innerText = formatMoney(data.income);
             document.getElementById('bdExpense').innerText = "-" + formatMoney(data.expenses);
-            
             document.getElementById('bdSSO').innerText = "-" + formatMoney(data.sso);
             document.getElementById('bdIns').innerText = "-" + formatMoney(data.ins);
             document.getElementById('bdOth').innerText = "-" + formatMoney(data.pvd + data.oth);
-            
             document.getElementById('bdNet').innerText = formatMoney(data.netIncome);
 
             modalTax.innerText = tax.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -692,26 +538,15 @@
                 modalTitle.className = "text-2xl font-bold text-emerald-600 mb-2";
                 modalTax.parentElement.className = "my-6 bg-slate-100 rounded-xl p-4 border border-slate-200";
                 modalTax.className = "text-4xl font-extrabold text-slate-400";
-                
-                modalMsg.innerHTML = `
-                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 text-left mb-4">
-                        <strong>⚠️ ข้อควรระวัง:</strong><br>
-                        "แม้ว่ายอดภาษีจะเป็น 0 บาท หรือเงินได้ไม่ถึงเกณฑ์ต้องเสียภาษี 
-                        <strong>คุณก็ยังต้องยื่นแบบแสดงรายการภาษี (ภ.ง.ด.) เพื่อความถูกต้อง</strong>"
-                    </div>
-                `;
+                modalMsg.innerHTML = `<div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 text-left mb-4"><strong>⚠️ ข้อควรระวัง:</strong><br>"แม้ว่ายอดภาษีจะเป็น 0 บาท หรือเงินได้ไม่ถึงเกณฑ์ต้องเสียภาษี <strong>คุณก็ยังต้องยื่นแบบแสดงรายการภาษี (ภ.ง.ด.) เพื่อความถูกต้อง</strong>"</div>`;
             } else {
                 modalIcon.innerText = "💸";
                 modalTitle.innerText = "ยอดภาษีที่ต้องชำระ";
                 modalTitle.className = "text-2xl font-bold text-slate-800 mb-2";
                 modalTax.parentElement.className = "my-6 bg-red-50 rounded-xl p-4 border border-red-100";
                 modalTax.className = "text-4xl font-extrabold text-red-600";
-                
-                modalMsg.innerHTML = `
-                    <p>กรุณาตรวจสอบและเตรียมวางแผนการชำระภาษีตามกำหนดเวลา</p>
-                `;
+                modalMsg.innerHTML = `<p>กรุณาตรวจสอบและเตรียมวางแผนการชำระภาษีตามกำหนดเวลา</p>`;
             }
-
             modal.classList.add('show');
         }
 
@@ -765,11 +600,9 @@
         }
 
         // Init Listeners
-        const inputs = ['inputSalary', 'deductSSO', 'deductInsurance', 'deductPVD', 'deductOthers'];
-        inputs.forEach(id => {
+        ['inputSalary', 'deductSSO', 'deductInsurance', 'deductPVD', 'deductOthers'].forEach(id => {
             document.getElementById(id).addEventListener('input', () => updateSimulation(false));
         });
-        
         updateSimulation(false);
     </script>
 </body>
